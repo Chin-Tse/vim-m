@@ -22,6 +22,8 @@ copyright="CopyRight (c) $4 $year. All Rights Reserved.";
 
 
 #Setup $vimrc
+ln -s vimrc ../.vimrc
+
 sed -i -e "s/\(let g:tskelUserName =\) \('.*'\)/\1 '$1'/g" \
 		-e "s/\(let g:tskelUserEmail =\) \('.*'\)/\1 '$2'/g" \
 		-e "s/\(let g:tskelUserWWW =\) \('.*'\)/\1 '$3'/g" \
@@ -33,3 +35,6 @@ sed -i -e "s/\(|AUTHOR.*=\) \(.*\)/\1 '$1'/g" \
 		-e "s/\(|AUTHORREF.*=\) \(.*\)/\1 '$1'/g" \
 		-e "s/\(|EMAIL.*=\) \(.*\)/\1 '$2'/g" \
 		-e "s/\(|COMPANY.*=\) \(.*\)/\1 '$4'/g" $csupport
+
+cp -f ./scripts/mk* /usr/local/bin/
+
