@@ -8,6 +8,9 @@
 # @copyright Copyright (c) linkihome.com 2012. All rights reserved.
 # @reference
 
+path=`pwd`
+ln -sf $path/vimrc .vimrc
+mv .vimrc ../
 vimrc=~/.vimrc;
 csupport=~/.vim/c-support/templates/Templates;
 
@@ -22,7 +25,6 @@ copyright="CopyRight (c) $4 $year. All Rights Reserved.";
 
 
 #Setup $vimrc
-ln -s vimrc ../.vimrc
 
 sed -i -e "s/\(let g:tskelUserName =\) \('.*'\)/\1 '$1'/g" \
 		-e "s/\(let g:tskelUserEmail =\) \('.*'\)/\1 '$2'/g" \
