@@ -11,6 +11,7 @@
 path=`pwd`
 ln -sf $path/vimrc .vimrc
 mv .vimrc ../
+rm -rf .vimrc
 vimrc=~/.vimrc;
 csupport=~/.vim/c-support/templates/Templates;
 
@@ -26,17 +27,21 @@ copyright="CopyRight (c) $4 $year. All Rights Reserved.";
 
 #Setup $vimrc
 
-sed -i -e "s/\(let g:tskelUserName =\) \('.*'\)/\1 '$1'/g" \
-		-e "s/\(let g:tskelUserEmail =\) \('.*'\)/\1 '$2'/g" \
-		-e "s/\(let g:tskelUserWWW =\) \('.*'\)/\1 '$3'/g" \
-		-e "s/\(let g:tskelLicense =\) \('.*'\)/\1 '$copyright'/g" \
-		-e "s/\(let g:DoxygenToolkit_authorName=\)\('.*'\)/\1'$1, $2'/g" $vimrc
+sed -i -e "s/\(let g:tskelUserName =\) \('.*'\)/\1 '$1'/g" $vimrc
+sed -i -e "s/\(let g:tskelUserEmail =\) \('.*'\)/\1 '$2'/g" $vimrc
+sed -i -e "s/\(let g:tskelUserWWW =\) \('.*'\)/\1 '$3'/g" $vimrc
+sed -i -e "s/\(let g:tskelLicense =\) \('.*'\)/\1 '$copyright'/g" $vimrc
+sed -i -e "s/\(let g:DoxygenToolkit_authorName=\)\('.*'\)/\1'$1, $2'/g" $vimrc
 
 #Setup c-support
-sed -i -e "s/\(|AUTHOR.*=\) \(.*\)/\1 '$1'/g" \
-		-e "s/\(|AUTHORREF.*=\) \(.*\)/\1 '$1'/g" \
-		-e "s/\(|EMAIL.*=\) \(.*\)/\1 '$2'/g" \
-		-e "s/\(|COMPANY.*=\) \(.*\)/\1 '$4'/g" $csupport
+sed -i -e "s/\(|AUTHOR.*=\) \(.*\)/\1 '$1'/g" $csupport
+sed -i -e "s/\(|AUTHORREF.*=\) \(.*\)/\1 '$1'/g" $csupport
+sed -i -e "s/\(|EMAIL.*=\) \(.*\)/\1 '$2'/g" $csupport
+sed -i -e "s/\(|COMPANY.*=\) \(.*\)/\1 '$4'/g" $csupport
 
-cp -f ./scripts/mk* /usr/local/bin/
+if [ `uname` = "Darwin" ]; then
+  cp -f ./scripts/mk* /usr/bin/
+else
+  cp -f ./scripts/mk* /usr/local/bin/
+fi
 
