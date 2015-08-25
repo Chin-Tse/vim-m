@@ -9,9 +9,9 @@
 # @reference
 
 path=`pwd`
-ln -sf $path/vimrc .vimrc
-mv .vimrc ../
-rm -rf .vimrc
+ln -sf $path/vimrc ~/.vimrc
+#mv .vimrc ../
+#rm -rf .vimrc
 vimrc=~/.vimrc;
 csupport=~/.vim/c-support/templates/Templates;
 

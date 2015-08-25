@@ -20,7 +20,6 @@
 " then press <leader>c to see the results, or :botright cw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -368,7 +367,7 @@ vnoremap $w <esc>`>a"<esc>`<i"<esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Comment for C like language
 if has("autocmd")
-	au BufNewFile,BufRead *.js,*.htc,*.c,*.tmpl,*.css ino $c /**<cr> **/<esc>O
+	au BufNewFile,BufRead *.xm,*.js,*.htc,*.c,*.tmpl,*.css ino $c /**<cr> **/<esc>O
 endif
 
 "My information
@@ -435,6 +434,8 @@ cno <C-A> <Home>
 cno <C-E> <End>
 cno <C-K> <C-U>
 
+set pastetoggle=<F10>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Buffer realted
@@ -476,9 +477,9 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python script
 set expandtab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 set backspace=2
 set smarttab
 set lbr
@@ -575,7 +576,6 @@ endif
 """"""""""""""""""""""""""""""
 " => Tag list (ctags) - not used
 """"""""""""""""""""""""""""""
-"let Tlist_Ctags_Cmd = "/sw/bin/ctags-exuberant"
 "let Tlist_Sort_Type = "name"
 "let Tlist_Show_Menu = 1
 "map <leader>t :Tlist<cr>
@@ -951,6 +951,8 @@ nmap <leader>tt :TrinityToggleNERDTree<CR>
 
 "*******
 "Taglist
+""let Tlist_Ctags_Cmd = "/opt/special/bin/ctags"
+let Tlist_Ctags_Cmd = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ctags"
 map <F3> :Tlist<cr>
 set updatetime=1000
 "let Tlist_Auto_Open=1
@@ -1190,12 +1192,12 @@ autocmd BufNewFile *.pl TSkeletonSetup perl.pl
 " window resize Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "resize horzontal split window
-nmap <C-Left> <C-W><<C-W><
-nmap <C-Right> <C-W>><C-W>>
+nmap <S-Left> <C-W><<C-W><
+nmap <S-Right> <C-W>><C-W>>
 
 "resize vertical split window
-nmap <C-Down> <C-W>-<C-W>-
-nmap <C-Up> <C-W>+<C-W>+
+nmap <S-Down> <C-W>-<C-W>-
+nmap <S-Up> <C-W>+<C-W>+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1309,13 +1311,77 @@ Bundle 'gmarik/vundle'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Valloric/ListToggle'
 Bundle 'scrooloose/syntastic'
+
 Plugin 'CCTree'
+Plugin 'fatih/vim-go'
+
+Plugin 'The-NERD-tree'
+Plugin 'ctrlp.vim'
+
+Plugin 'SirVer/ultisnips'
+Plugin 'ervandew/supertab'
+Plugin 'majutsushi/tagbar'
+
 call vundle#end()
 filetype plugin indent on
 
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>ji :YcmCompleter GoTo<CR>
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+"let g:ycm_server_use_vim_stdout = 1
+"let g:ycm_server_log_level = 'debug'
+
+"let g:clang_library_path="/Library/Developer/CommandLineTools/usr/lib/"
+let g:clang_library_path="/Users/see/.vim/bundle/YouCompleteMe/third_party/ycmd/"
+let g:ycm_confirm_extra_conf = 0 
+
+"ultisnips & supertab"
+"refrence to http://0x3f.org/blog/make-youcompleteme-ultisnips-compatible/
+let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+
+let g:SuperTabDefaultCompletionType = '<C-Tab>'
+
+"*****tagbar*******"
+let g:tagbar_ctags_bin="/opt/special/bin/ctags"
+nmap <C-t> :TagbarToggle<CR>
+let tagbar_left=1
+let g:tagbar_type_objc = {
+      \ 'ctagstype' : 'ObjectiveC',
+      \ 'kinds'     : [
+      \ 'i:interface',
+      \ 'I:implementation',
+      \ 'p:Protocol',
+      \ 'm:Object_method',
+      \ 'c:Class_method',
+      \ 'v:Global_variable',
+      \ 'F:Object field',
+      \ 'f:function',
+      \ 'p:property',
+      \ 't:type_alias',
+      \ 's:type_structure',
+      \ 'e:enumeration',
+      \ 'M:preprocessor_macro',
+      \ ],
+      \ 'sro'        : ' ',
+      \ 'kind2scope' : {
+      \ 'i' : 'interface',
+      \ 'I' : 'implementation',
+      \ 'p' : 'Protocol',
+      \ 's' : 'type_structure',
+      \ 'e' : 'enumeration'
+      \ },
+      \ 'scope2kind' : {
+      \ 'interface'      : 'i',
+      \ 'implementation' : 'I',
+      \ 'Protocol'       : 'p',
+      \ 'type_structure' : 's',
+      \ 'enumeration'    : 'e'
+      \ }
+  \ }
 
 "****************
 "nerdtree
