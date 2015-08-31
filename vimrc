@@ -1299,7 +1299,7 @@ endif
 nmap <silent> <leader>lk :LUTags<cr>
 nmap <silent> <leader>ll :LUBufs<cr>
 nmap <silent> <leader>lw :LUWalk<cr>
-nmap <unique> <silent>ff <Plug>LookupFile
+nmap <unique> <silent>tt <Plug>LookupFile
 
 "****************
 "vundle
@@ -1311,6 +1311,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Valloric/ListToggle'
 Bundle 'scrooloose/syntastic'
+Bundle 'Lokaltog/vim-easymotion'
 
 Plugin 'CCTree'
 Plugin 'fatih/vim-go'
