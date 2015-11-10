@@ -368,6 +368,9 @@ vnoremap $w <esc>`>a"<esc>`<i"<esc>
 "Comment for C like language
 if has("autocmd")
 	au BufNewFile,BufRead *.xm,*.js,*.htc,*.c,*.tmpl,*.css ino $c /**<cr> **/<esc>O
+	au BufNewFile,BufRead *.m setf objc
+	au BufNewFile,BufRead *.mm setf objcpp
+	au BufNewFile,BufRead *.xm setf objcpp
 endif
 
 "My information
@@ -757,7 +760,7 @@ endif
 
 imap <leader>z <Esc>
 "Paste toggle - when pasting something in, don't indent.
-"set pastetoggle=<F3>
+set pastetoggle=<F12>
 
 "Remove indenting on empty line
 map <F2> :%s/s*$//g<cr>:noh<cr>''
