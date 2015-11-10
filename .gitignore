@@ -1,2 +1,6 @@
 bundle/
 *.pyc
+eclim/
+plugin/eclim.vim
+Templates
+

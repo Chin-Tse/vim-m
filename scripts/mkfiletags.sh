@@ -18,9 +18,11 @@ then
     mkdir -p $prjdir
 fi
 
+curdir=`pwd`
+
 #cscope.files
 echo "cscope.files..."
-find . \( -path ./scripts -o -path $prjdir -o -path ./project -o -path ./driver/ssp/broadcom3 -o -path ./driver/ssp/marvell \) -prune -o -name "*.[ch]" -print | awk '!/\.mod\.c$/{print $0}' > $prjdir/cscope.files
+find $curdir \( -path ./scripts -o -path $prjdir  -o -path ./svn -o -path ./.git \) -prune -o -name "*.[ch]" -print | awk '!/\.mod\.c$/{print $0}' > $prjdir/cscope.files
 #find ./ -name "*.h" -o -name "*.c" -o -name "*.cc" > $prjdir/cscope.files
 
 #filetags for lookupfile
